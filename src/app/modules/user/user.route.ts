@@ -1,8 +1,10 @@
-import express from 'express'
-import { UserController } from './user.controller'
-const router = express.Router()
+// import express from 'express'
+// import { userControllers } from './user.controllers';
+// import validateRequest from '../../middleware/validateRequest';
+// import { userValidaton } from './user.validation';
+// const router = express.Router()
 
-// will call controller
-router.post ('/create-user',UserController.createUser)
+// // create admin
+// router.post ('/create-admin',validateRequest(userValidaton.createAdminValidation),userControllers.createAdmin)
 
-export const userRoutes = router;
+// export const userRoutes = router;
