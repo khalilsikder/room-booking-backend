@@ -27,6 +27,5 @@ isDeleted:{
     type:Boolean,
 },
 
-})
-
+}) 
 export const roomModel = model<TRoom>('roomModel',roomSchema)
