@@ -1,6 +1,9 @@
-// import express from 'express'
-// import { slotController } from './slot.controller';
-// const router = express.Router();
-// router.post('/create-slot',slotController.createSlot)
+import express from 'express'
+import { slotController } from './slot.controller';
+const router = express.Router();
 
-// export const slotRoutes = router
+
+router.post('/create-slot',slotController.createSlot)
+router.get('/',slotController.getSlot)
+
+export const slotRoutes = router
