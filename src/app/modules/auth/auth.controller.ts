@@ -1,10 +1,8 @@
-import { Request, Response } from "express"
 import sendResponse from "../../utiles/sendResponse"
 import catchAsync from "../../utiles/catchAsync"
 import { authServices } from "./auth.service"
 
-const signUp = catchAsync(async(req:Request,res:Response) => {
-   try{
+const signUp = catchAsync(async(req,res) => {
     const {user:userData} = req.body 
     const result = await  authServices.signUp(userData)
     sendResponse(res,{
@@ -13,13 +11,9 @@ const signUp = catchAsync(async(req:Request,res:Response) => {
   message:'signUp crerate successfull',
   data:result
     })
-   }catch(err){
-    console.log(err);
-   }
 })
 
-const login = catchAsync(async(req:Request,res:Response) => {
-   try{
+const login = catchAsync(async(req,res) => {
     const result = await  authServices.login(req.body)
     sendResponse(res,{
   statusCode:404,
@@ -27,10 +21,7 @@ const login = catchAsync(async(req:Request,res:Response) => {
   message:'login successfull',
   data:result
     })
-   }catch(err){
-    console.log(err);
-   }
-})
+  })
 
 export const  authControllers = {
     signUp,login

@@ -13,9 +13,9 @@ const admin = await User.findByIdAndUpdate({_id},payload);
   return admin;
 };
 
-const accessToken = jwt.sign(jwtPayload,config.jwt_access_secret as string{
-    expiresIn,
-})
+// const accessToken = jwt.sign(jwtPayload,config.jwt_access_secret as string{
+//     expiresIn,
+// })
 export const userServices = {
   createAdminintoDB,
   updateUserintoDB

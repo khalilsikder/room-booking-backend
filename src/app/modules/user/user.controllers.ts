@@ -1,10 +1,8 @@
-import { Request, Response } from "express"
 import { userServices } from "./user.service"
 import sendResponse from "../../utiles/sendResponse"
 import catchAsync from "../../utiles/catchAsync"
 
-const createAdmin = catchAsync(async(req:Request,res:Response) => {
-   try{
+const createAdmin= catchAsync(async(req,res) => {
     const {user:userData} = req.body 
     const result = await  userServices.createAdminintoDB(userData)
     sendResponse(res,{
@@ -13,13 +11,9 @@ const createAdmin = catchAsync(async(req:Request,res:Response) => {
   message:'user crerate successfull',
   data:result
     })
-   }catch(err){
-    console.log(err);
-   }
 })
 
-const updateUser = catchAsync(async(req:Request,res:Response) => {
-   try{
+const updateUser = catchAsync(async(req,res) => {
     const {userId} = req.params 
     const result = await  userServices.updateUserintoDB(userId,req.body)
     sendResponse(res,{
@@ -28,9 +22,6 @@ const updateUser = catchAsync(async(req:Request,res:Response) => {
   message:'user update successfull',
   data:result
     })
-   }catch(err){
-    console.log(err);
-   }
 })
 
 export const  userControllers = {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { TRoom} from "./room.interface"
 import { roomModel } from "./room.model"
 

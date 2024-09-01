@@ -1,8 +1,8 @@
 "use strict";
-// import { NextFunction, Request, RequestHandler, Response } from "express";
-// const catchAsync = (fn:RequestHandler) =>{
-//     return (req:Request,res:Response,next:NextFunction) =>{
-//   Promise.resolve(fn(req,res,next)).catch((err)=>next(err))
-//   };
-//   };
-//   export default catchAsync;
+Object.defineProperty(exports, "__esModule", { value: true });
+const catchAsync = (fn) => {
+    return (req, res, next) => {
+        Promise.resolve(fn(req, res, next)).catch((err) => next(err));
+    };
+};
+exports.default = catchAsync;

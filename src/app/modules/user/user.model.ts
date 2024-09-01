@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-this-alias */
 import { Schema, model } from "mongoose";
 import { TUser} from "./user.interface";
 import { USER_Role } from "./user.constants";
@@ -20,7 +21,7 @@ const userSchema = new Schema<TUser>({
     select:0,
   },
   phone: {
-    type: String,
+    type: Number,
     required: true,
   },
   address: {

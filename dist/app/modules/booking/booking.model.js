@@ -1,38 +1,39 @@
 "use strict";
-// import { Schema, Types, model } from "mongoose";
-// import { Booking } from "./booking.interface";
-// const bookingSchema = new Schema<Booking>({
-// room:{
-//     type:Schema.Types.ObjectId,
-//     ref:'Room',
-//     required:true,
-// },
-// slots:[{
-//     type:Schema.Types.ObjectId,
-//     ref:'Slots',
-//     required:true,
-// }],
-// user:{
-//     type:Schema.Types.ObjectId,
-//     ref:'User',
-//     required:true,
-// },
-// date:{
-//     type:Date,
-//     required:true,
-// },
-// totalAmount:{
-//     type:Number,
-//     required:true,
-// },
-// isConfirmed:{
-//     type:String,
-//     enum:['isConfirmed' , 'unConfirmed' , 'canceled'],
-//     required:true,
-// },
-// isDeleted:{
-//     type:Boolean,
-//     default:false
-// }
-// })
-// export const bookingModel = model('bookingModel',bookingSchema)
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.bookingModel = void 0;
+const mongoose_1 = require("mongoose");
+const bookingSchema = new mongoose_1.Schema({
+    room: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'Room',
+        required: true,
+    },
+    slots: [{
+            type: mongoose_1.Schema.Types.ObjectId,
+            ref: 'Slots',
+            required: true,
+        }],
+    user: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
+    date: {
+        type: Date,
+        required: true,
+    },
+    totalAmount: {
+        type: Number,
+        required: true,
+    },
+    isConfirmed: {
+        type: String,
+        enum: ['isConfirmed', 'unConfirmed', 'canceled'],
+        required: true,
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false
+    }
+});
+exports.bookingModel = (0, mongoose_1.model)('bookingModel', bookingSchema);

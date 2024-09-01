@@ -1,11 +1,10 @@
-import { Request, Response } from "express";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import catchAsync from "../../utiles/catchAsync";
 import { roomServices } from "./room.service";
 
 
 // creat controller
-const createController = async(req:Request,res:Response) =>
-{
-try{
+const createController = catchAsync(async(req,res) =>{
     const {room:roomData} = req.body;
     const result = await roomServices.createRoomintoDB(roomData)
     res.status(200).json({
@@ -13,15 +12,10 @@ try{
         message:'room is crated',
         data:result,
     })
-}catch(err){
-console.log(err);
-}
-}
+})
 
 // get a single controller
-const getSingleController = async(req:Request,res:Response) =>
-{
-try{
+const getSingleController =catchAsync(async(req,res) =>{
     const {room:roomData} = req.body;
     const result = await roomServices.getSingleRoomintoDB(roomData)
     res.status(200).json({
@@ -29,15 +23,10 @@ try{
         message:'single room is created is crated',
         data:result,
     })
-}catch(err){
-console.log(err);
-}
-}
+})
 
 // getAllController
-const getAllController = async(req:Request,res:Response) =>
-{
-try{
+const getAllController = catchAsync(async(req,res) =>{
     const {room:roomData} = req.body;
     const result = await roomServices.getAllRoomintoDB()
     res.status(200).json({
@@ -45,15 +34,10 @@ try{
         message:'all room is crated',
         data:result,
     })
-}catch(err){
-console.log(err);
-}
-}
+})
 
 // updateSingle controller
-const updateSingleController = async(req:Request,res:Response) =>
-{
-try{
+const updateSingleController= catchAsync(async(req,res) =>{
     const {room:roomData} = req.body;
     const result = await roomServices.updateSingleRoomintoDB(roomData)
     res.status(200).json({
@@ -61,15 +45,10 @@ try{
         message:'single room is updated',
         data:result,
     })
-}catch(err){
-console.log(err);
-}
-}
+})
 
 // delete single room
-const deleteSingleController = async(req:Request,res:Response) =>
-{
-try{
+const deleteSingleController = catchAsync(async(req,res) =>{
     const {room:roomData} = req.body;
     const result = await roomServices.updateSingleRoomintoDB(roomData)
     res.status(200).json({
@@ -77,10 +56,7 @@ try{
         message:'single room is updated',
         data:result,
     })
-}catch(err){
-console.log(err);
-}
-}
+})
 
 export const roomController = {
     createController,

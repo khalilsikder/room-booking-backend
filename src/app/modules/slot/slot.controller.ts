@@ -1,8 +1,9 @@
-import { Request, Response } from "express"
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { RequestHandler } from "express"
 import { slotServices } from "./slot.service"
+import catchAsync from "../../utiles/catchAsync";
 
-const createSlot = async(req:Request,res:Response) => {
-    try{
+const createSlot= catchAsync(async(req,res) => {
         const {slot:slotData} = req.body;
         const result = await slotServices.createSlotintoDB(slotData)
         res.status(200).json({
@@ -10,12 +11,8 @@ const createSlot = async(req:Request,res:Response) => {
             message:'room is crated',
             data:result,
         })
-    }catch(err){
-    console.log(err);
-    }
-}
-const getSlot = async(req:Request,res:Response) => {
-    try{
+    })
+const getSlot = catchAsync(async(req,res) => {
         const {slot:slotData} = req.body;
         const result = await slotServices.getSlotintoDB()
         res.status(200).json({
@@ -23,10 +20,7 @@ const getSlot = async(req:Request,res:Response) => {
             message:'room is crated',
             data:result,
         })
-    }catch(err){
-    console.log(err);
-    }
-}
+    })
 
 export const slotController = {
     createSlot,

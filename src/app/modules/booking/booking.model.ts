@@ -1,30 +1,30 @@
-import { Schema, Types, model } from "mongoose";
+import { Schema, model } from "mongoose";
 import { Booking } from "./booking.interface";
 
 const bookingSchema = new Schema<Booking>({
-room:{
+room:[{
     type:Schema.Types.ObjectId,
-    ref:'Room',
-    required:true,
-},
-slots:[{
-    type:Schema.Types.ObjectId,
-    ref:'Slots',
+    ref:'room_id',
     required:true,
 }],
-user:{
+slots:[{
     type:Schema.Types.ObjectId,
-    ref:'User',
+    ref:'slots_id',
     required:true,
-},
-date:{
+}],
+user:[{
+    type:Schema.Types.ObjectId,
+    ref:'user_id',
+    required:true,
+}],
+date:[{
     type:Date,
     required:true,
-},
-totalAmount:{
+}],
+totalAmount:[{
     type:Number,
     required:true,
-},
+}],
 isConfirmed:{
     type:String,
     enum:['isConfirmed' , 'unConfirmed' , 'canceled'],

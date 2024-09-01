@@ -1,5 +1,2 @@
 "use strict";
-// export type TLoginUser = {
-//   email:string;
-//   password:string;
-// }
+Object.defineProperty(exports, "__esModule", { value: true });

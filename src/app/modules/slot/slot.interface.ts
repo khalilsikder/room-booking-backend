@@ -1,5 +1,6 @@
+
 export type Slot = {
-    room:string;
+    room:number;
     date:Date;
     startTime:string;
     endTime:string;
