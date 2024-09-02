@@ -1,4 +1,6 @@
 "use strict";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,14 +36,14 @@ const isPasswordMatch = (plainPassword, hashedPassword) => __awaiter(void 0, voi
     const isMatched = yield bcryptjs_1.default.compare(plainPassword, hashedPassword);
     return isMatched;
 });
-const passwordMatch = isPasswordMatch(payload.password, user_model_1.User.password);
-if (!passwordMatch) {
-    throw new Error('password not match');
-}
-const jwtPayload = {
-    email: user_model_1.User.email,
-    role: user_model_1.User.role
-};
+// const passwordMatch = isPasswordMatch(payload.password,User.password)
+// if(!passwordMatch){
+//     throw new Error('password not match')
+// }
+// const jwtPayload = {
+//     email:User.email,
+//     role:User.role
+// }
 exports.authServices = {
     signUp, login
 };

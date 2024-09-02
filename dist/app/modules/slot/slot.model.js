@@ -3,10 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.slotModel = void 0;
 const mongoose_1 = require("mongoose");
 const slotSchema = new mongoose_1.Schema({
-    room: {
-        type: String,
-        required: true,
-    },
+    room: [{
+            type: String,
+            required: true,
+        }],
     date: {
         type: Date,
         required: true,

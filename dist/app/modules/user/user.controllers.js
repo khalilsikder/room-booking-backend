@@ -17,34 +17,24 @@ const user_service_1 = require("./user.service");
 const sendResponse_1 = __importDefault(require("../../utiles/sendResponse"));
 const catchAsync_1 = __importDefault(require("../../utiles/catchAsync"));
 const createAdmin = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { user: userData } = req.body;
-        const result = yield user_service_1.userServices.createAdminintoDB(userData);
-        (0, sendResponse_1.default)(res, {
-            statusCode: 404,
-            success: true,
-            message: 'user crerate successfull',
-            data: result
-        });
-    }
-    catch (err) {
-        console.log(err);
-    }
+    const { user: userData } = req.body;
+    const result = yield user_service_1.userServices.createAdminintoDB(userData);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 404,
+        success: true,
+        message: 'user crerate successfull',
+        data: result
+    });
 }));
 const updateUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { userId } = req.params;
-        const result = yield user_service_1.userServices.updateUserintoDB(userId, req.body);
-        (0, sendResponse_1.default)(res, {
-            statusCode: 404,
-            success: true,
-            message: 'user update successfull',
-            data: result
-        });
-    }
-    catch (err) {
-        console.log(err);
-    }
+    const { userId } = req.params;
+    const result = yield user_service_1.userServices.updateUserintoDB(userId, req.body);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 404,
+        success: true,
+        message: 'user update successfull',
+        data: result
+    });
 }));
 exports.userControllers = {
     createAdmin,

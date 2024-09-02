@@ -1,50 +1,81 @@
 /* eslint-disable @typescript-eslint/no-this-alias */
-import { Schema, model } from "mongoose";
-import { TUser} from "./user.interface";
-import { USER_Role } from "./user.constants";
-import brcyptjs from 'bcryptjs'
-import config from "../../config";
+import bcrypt from 'bcrypt';
+import { Schema, model } from 'mongoose';
+import config from '../../config';
+import { UserStatus } from './user.constant';
+import { TUser, UserModel } from './user.interface';
 
-const userSchema = new Schema<TUser>({
-  name: {
-    type: String,
-    required: [true,'name is required']
+const userSchema = new Schema<TUser, UserModel>(
+  {
+    name:{
+       type: String,
+       required: true,
+       unique: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+      select: 0,
+    },
+    phone: {
+      type:Number,
+      required:true,
+      unique:true,
+    },
+    address: {
+       type:String,
+       required:true,
+       unique:true,
+    },
+    role: {
+      type: String,
+      enum: ['user', 'admin'],
+    },
   },
-  email: {
-    type: String,
-    required: [true,'email is required'],
-    unique:true,
+  {
+    timestamps: true,
   },
-  password: {
-    type: String,
-    required: [true,'password is required'],
-    select:0,
-  },
-  phone: {
-    type: Number,
-    required: true,
-  },
-  address: {
-    type: String,
-    required: true,
-  },
-  role: {
-    type: String,
-    required: [true,'role is required'],
-    enum:Object.keys(USER_Role)
-  },
+);
+
+userSchema.pre('save', async function (next) {
+  const user = this; // doc
+  // hashing password and save into DB
+  user.password = await bcrypt.hash(
+    user.password,
+    Number(config.bcrypt_salt_rounds),
+  );
+  next();
 });
 
-userSchema.pre('save',async function(next){
-    const user = this;
-    user.password = await brcyptjs.hash(user.password,Number(config.salt_round))
+// set '' after saving password
+userSchema.post('save', function (doc, next) {
+  doc.password = '';
+  next();
+});
 
-    next()
-})
-userSchema.post('save',async function(doc,next){
-    doc.password = '';
+userSchema.statics.isUserExistsByCustomId = async function (id: string) {
+  return await User.findOne({ id }).select('+password');
+};
 
-    next()
-})
+userSchema.statics.isPasswordMatched = async function (
+  plainTextPassword,
+  hashedPassword,
+) {
+  return await bcrypt.compare(plainTextPassword, hashedPassword);
+};
 
-export const User = model<TUser>("User", userSchema);
+userSchema.statics.isJWTIssuedBeforePasswordChanged = function (
+  passwordChangedTimestamp: Date,
+  jwtIssuedTimestamp: number,
+) {
+  const passwordChangedTime =
+    new Date(passwordChangedTimestamp).getTime() / 1000;
+  return passwordChangedTime > jwtIssuedTimestamp;
+};
+
+export const User = model<TUser, UserModel>('User', userSchema);

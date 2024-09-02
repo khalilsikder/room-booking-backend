@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 import { Booking } from "./booking.interface";
+import { string } from "zod";
 
 const bookingSchema = new Schema<Booking>({
 room:[{

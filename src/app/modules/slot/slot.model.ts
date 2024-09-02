@@ -2,10 +2,10 @@ import { Schema, model } from "mongoose";
 import { Slot } from "./slot.interface";
 
 const slotSchema = new Schema<Slot>({
-room:{
+room:[{
     type:String,
     required:true,   
-},
+}],
 date:{
     type:Date,
     required:true,

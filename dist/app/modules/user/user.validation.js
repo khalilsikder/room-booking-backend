@@ -14,14 +14,12 @@ const createAdminValidation = zod_1.z.object({
     })
 });
 const updateUserValidation = zod_1.z.object({
-    body: zod_1.z.object({
-        name: zod_1.z.string(),
-        // email:z.string().email(),
-        // password:z.string({ invalid_type_error: "Password must be a string"}),
-        phone: zod_1.z.string().optional(),
-        address: zod_1.z.string().optional(),
-        role: zod_1.z.nativeEnum(user_constants_1.USER_Role).optional()
-    })
+    name: zod_1.z.string(),
+    // email:z.string().email(),
+    password: zod_1.z.string({ invalid_type_error: "Password must be a string" }),
+    phone: zod_1.z.string().optional(),
+    address: zod_1.z.string().optional(),
+    // role:z.nativeEnum(USER_Role).optional()
 });
 exports.userValidation = {
     createAdminValidation,

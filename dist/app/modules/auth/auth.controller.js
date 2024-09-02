@@ -17,33 +17,23 @@ const sendResponse_1 = __importDefault(require("../../utiles/sendResponse"));
 const catchAsync_1 = __importDefault(require("../../utiles/catchAsync"));
 const auth_service_1 = require("./auth.service");
 const signUp = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { user: userData } = req.body;
-        const result = yield auth_service_1.authServices.signUp(userData);
-        (0, sendResponse_1.default)(res, {
-            statusCode: 404,
-            success: true,
-            message: 'signUp crerate successfull',
-            data: result
-        });
-    }
-    catch (err) {
-        console.log(err);
-    }
+    const { user: userData } = req.body;
+    const result = yield auth_service_1.authServices.signUp(userData);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 404,
+        success: true,
+        message: 'signUp crerate successfull',
+        data: result
+    });
 }));
 const login = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const result = yield auth_service_1.authServices.login(req.body);
-        (0, sendResponse_1.default)(res, {
-            statusCode: 404,
-            success: true,
-            message: 'login successfull',
-            data: result
-        });
-    }
-    catch (err) {
-        console.log(err);
-    }
+    const result = yield auth_service_1.authServices.login(req.body);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 404,
+        success: true,
+        message: 'login successfull',
+        data: result
+    });
 }));
 exports.authControllers = {
     signUp, login
