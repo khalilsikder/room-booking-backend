@@ -1,61 +1,66 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import httpStatus from "http-status";
 import catchAsync from "../../utiles/catchAsync";
+import sendResponse from "../../utiles/sendResponse";
 import { roomServices } from "./room.service";
 
 
 // creat controller
 const createController = catchAsync(async(req,res) =>{
-    const {room:roomData} = req.body;
-    const result = await roomServices.createRoomintoDB(roomData)
-    res.status(200).json({
-        success:true,
-        message:'room is crated',
-        data:result,
-    })
+    const result = await roomServices.createRoomintoDB(req.body)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Room  is created succesfully',
+        data: result,
+      });
 })
 
 // get a single controller
 const getSingleController =catchAsync(async(req,res) =>{
-    const {room:roomData} = req.body;
-    const result = await roomServices.getSingleRoomintoDB(roomData)
-    res.status(200).json({
-        success:true,
-        message:'single room is created is crated',
-        data:result,
-    })
+   const {roomId} = req.params
+    const result = await roomServices.getSingleRoomintoDB(roomId)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'get a room succesfully',
+        data: result,
+      });
 })
 
 // getAllController
 const getAllController = catchAsync(async(req,res) =>{
-    const {room:roomData} = req.body;
-    const result = await roomServices.getAllRoomintoDB()
-    res.status(200).json({
-        success:true,
-        message:'all room is crated',
-        data:result,
-    })
+    const result = await roomServices.getAllRoomintoDB(req.query)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'rooms created succesfully',
+        data: result,
+      });
 })
 
 // updateSingle controller
 const updateSingleController= catchAsync(async(req,res) =>{
-    const {room:roomData} = req.body;
-    const result = await roomServices.updateSingleRoomintoDB(roomData)
-    res.status(200).json({
-        success:true,
-        message:'single room is updated',
-        data:result,
-    })
+    const {roomId} = req.params;
+    const result = await roomServices.updateSingleRoomintoDB(roomId,req.body)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'room is updated succesfully',
+        data: result,
+      });
 })
 
 // delete single room
 const deleteSingleController = catchAsync(async(req,res) =>{
-    const {room:roomData} = req.body;
-    const result = await roomServices.updateSingleRoomintoDB(roomData)
-    res.status(200).json({
-        success:true,
-        message:'single room is updated',
-        data:result,
-    })
+    const {roomId} = req.params;
+    const result = await roomServices.deleteSingleRoomintoDB(roomId)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'room is updated succesfully',
+        data: result,
+      });
 })
 
 export const roomController = {

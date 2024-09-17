@@ -1,9 +1,12 @@
 import express from 'express';
-import auth from '../../middlewares/auth';
-import validateRequest from '../../middlewares/validateRequest';
-import { USER_ROLE } from '../User/user.constant';
+// import auth from '../../middlewares/auth';
+// import validateRequest from '../../middlewares/validateRequest';
+// import { USER_ROLE } from '../User/user.constant';
 import { AuthControllers } from './auth.controller';
 import { AuthValidation } from './auth.validation';
+import validateRequest from '../../middleware/validateRequest';
+import auth from '../../middleware/auth';
+import { USER_Role } from '../user/user.constants';
 
 const router = express.Router();
 
@@ -16,10 +19,8 @@ router.post(
 router.post(
   '/change-password',
   auth(
-    USER_ROLE.superAdmin,
-    USER_ROLE.admin,
-    USER_ROLE.faculty,
-    USER_ROLE.student,
+    // USER_Role.superAdmin,
+    USER_Role.ADMIN,
   ),
   validateRequest(AuthValidation.changePasswordValidationSchema),
   AuthControllers.changePassword,

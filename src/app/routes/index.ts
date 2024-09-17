@@ -15,27 +15,27 @@ const moduleRoutes = [
         route:roomRoutes,
     },
     {
-        path: 'rooms',
+        path: '/rooms',
         route:roomRoutes,
     },
     {
-        path: 'rooms/:id',
+        path:'/rooms/:id',
         route:roomRoutes,
     },
     {
-        path: 'slots',
+        path: '/slots',
         route:slotRoutes,
     },
     {
-        path: 'slots/:id',
+        path: '/slots/availablity',
         route:slotRoutes,
     },
     {
-        path: 'bookings',
+        path: '/bookings',
         route:bookingRoutes,
     },
     {
-        path: 'bookings/:id',
+        path: '/my-bookings',
         route:bookingRoutes,
     },
 ]

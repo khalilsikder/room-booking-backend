@@ -1,11 +1,14 @@
-import { Booking } from "./booking.interface";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+import { string } from "zod";
+import { TBooking } from "./booking.interface";
 import { bookingModel } from "./booking.model";
 
-const createBookingintoDB = async(booking:Booking) => {
-const result = await bookingModel.create(booking)
+const createBookingintoDB = async(payload:TBooking) => {
+const result = await bookingModel.create(payload)
 return result;
 }
-const getAllBookingintoDB = async() => {
+const getAllBookingintoDB = async(query: unknown) => {
 const result = await bookingModel.find()
 return result;
 }
@@ -13,8 +16,8 @@ const getSingleBookingintoDB = async(id:string) => {
 const result = await bookingModel.findById(id)
 return result;
 }
-const updateSingleBookingintoDB = async(id:string) => {
-const result = await bookingModel.findByIdAndUpdate(id)
+const updateSingleBookingintoDB = async(id:string,payload:Partial<TBooking>) =>{
+const result = await bookingModel.findOneAndUpdate({id:string},payload,{new:true})
 return result;
 }
 const deleteSingleRoomintoDB = async(id:string) => {

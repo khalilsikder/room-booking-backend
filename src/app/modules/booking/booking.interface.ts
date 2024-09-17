@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 
-export type Booking = {
+export type TBooking = {
     room:Types.ObjectId;
     slots:Types.ObjectId[];
     user:Types.ObjectId;
